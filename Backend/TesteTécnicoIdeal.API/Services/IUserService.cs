@@ -7,8 +7,8 @@ namespace TesteTécnicoIdeal.API.Services
     {
         public Task<List<User>> GetAllUsers();
         public Task<User> GetUserById(int id);
-        public Task AddUser(AddUserDTO request);
-        public Task UpdateUser(User request);
+        public Task AddUser(UserDTO request);
+        public Task UpdateUser(UserDTO request, int id);
         public Task DeleteUser(int id);
     }
 }

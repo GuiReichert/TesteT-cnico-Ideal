@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using TesteTécnicoIdeal.API.DTO_s;
+using TesteTécnicoIdeal.API.Exceptions;
 using TesteTécnicoIdeal.API.Models;
 using TesteTécnicoIdeal.API.Services;
 
@@ -20,29 +22,49 @@ namespace TesteTécnicoIdeal.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
-            var users = await _userService.GetAllUsers();
-
-            if(users != null)
+            try
             {
+                var users = await _userService.GetAllUsers();
+
                 return Ok(users);
             }
-            return BadRequest();
+            catch (Exception ex)
+            {
+                if (ex is CustomExceptions)
+                {
+                    var exception = ex as CustomExceptions;
+
+                    return BadRequest(exception.ErrorMessages);
+                }
+                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
+            }
+
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUserById(int id)
         {
-            var user = await _userService.GetUserById(id);
-
-            if(user != null)
+            try
             {
+                var user = await _userService.GetUserById(id);
+
                 return Ok(user);
             }
-            return BadRequest();
+            catch(Exception ex)
+            {
+                if (ex is CustomExceptions) 
+                {
+                    var exception = ex as CustomExceptions;
+
+                    return BadRequest(exception.ErrorMessages);
+                }
+                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
+
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(AddUserDTO request)
+        public async Task<ActionResult> Post(UserDTO request)
         {
             try
             {
@@ -51,25 +73,36 @@ namespace TesteTécnicoIdeal.API.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest(ex.Message);
+                if (ex is CustomExceptions)
+                {
+                    var exception = ex as CustomExceptions;
+
+                    return BadRequest(exception.ErrorMessages);
+                }
+                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
 
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put(User request)
+        public async Task<ActionResult> Put(UserDTO request, int id)
         {
             try
             {
-                await _userService.UpdateUser(request);
+                await _userService.UpdateUser(request , id);
                 return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                if (ex is CustomExceptions)
+                {
+                    var exception = ex as CustomExceptions;
+
+                    return BadRequest(exception.ErrorMessages);
+                }
+                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
         }
-
 
         [HttpDelete]
         public async Task<ActionResult> Delete(int id)
@@ -81,12 +114,15 @@ namespace TesteTécnicoIdeal.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                if (ex is CustomExceptions)
+                {
+                    var exception = ex as CustomExceptions;
+
+                    return BadRequest(exception.ErrorMessages);
+                }
+                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
         }
 
-
-
-        // A FAZER : Tratar Exceções e adicionar mensagem de "Erro desconhecido" para erros não tratados, não deixando o programa jogar a mensagem de erro para o usuário
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TesteTécnicoIdeal.API.Database;
+using TesteTécnicoIdeal.API.Exceptions;
 using TesteTécnicoIdeal.API.Models;
 
 namespace TesteTécnicoIdeal.API.Repositories
@@ -24,6 +25,11 @@ namespace TesteTécnicoIdeal.API.Repositories
         {
             var user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
 
+            if (user == null)
+            {
+                throw new CustomExceptions("Este cadastro não existe.");
+            }
+
             return user;
         }
 
@@ -36,6 +42,12 @@ namespace TesteTécnicoIdeal.API.Repositories
         {
             var userToUpdate = await _dbContext.Users.FindAsync(request.Id);
 
+            if (userToUpdate == null)
+            {
+                throw new CustomExceptions("Este cadastro não existe.");
+            }
+
+
             userToUpdate.Name = request.Name;
             userToUpdate.Surname = request.Surname;
             userToUpdate.PhoneNumber = request.PhoneNumber;
@@ -45,8 +57,13 @@ namespace TesteTécnicoIdeal.API.Repositories
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
+            if (user == null)
+            {
+                throw new CustomExceptions("Este cadastro não existe.");
+            }
             _dbContext.Remove(user);
         }
+
 
     }
 }

@@ -28,20 +28,19 @@ namespace TesteTécnicoIdeal.API.Services
             return await _userRepository.GetUserById(id);
         }
 
-        public async Task AddUser(AddUserDTO request)
+        public async Task AddUser(UserDTO request)
         {
-            ValidateUser();
-
             var mappedRequest = _mapper.Map<User>(request);
 
             await _userRepository.AddUser(mappedRequest);
             await _unitOfWork.CommitChanges();
         }
-        public async Task UpdateUser(User request)
+        public async Task UpdateUser(UserDTO request, int id)
         {
-            ValidateUser();
+            var mappedRequest = _mapper.Map<User>(request);
+            mappedRequest.Id = id;
 
-            await _userRepository.UpdateUser(request);
+            await _userRepository.UpdateUser(mappedRequest);
             await _unitOfWork.CommitChanges();
         }
 
@@ -49,13 +48,6 @@ namespace TesteTécnicoIdeal.API.Services
         {
             await _userRepository.DeleteUser(id);
             await _unitOfWork.CommitChanges();
-        }
-
-
-
-        private void ValidateUser()                     // Função a ser criada para validar os dados e checar exceções.
-        {
-
         }
 
     }

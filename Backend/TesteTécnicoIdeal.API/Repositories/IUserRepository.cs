@@ -1,4 +1,5 @@
-﻿using TesteTécnicoIdeal.API.Models;
+﻿using TesteTécnicoIdeal.API.DTO_s;
+using TesteTécnicoIdeal.API.Models;
 
 namespace TesteTécnicoIdeal.API.Repositories
 {
