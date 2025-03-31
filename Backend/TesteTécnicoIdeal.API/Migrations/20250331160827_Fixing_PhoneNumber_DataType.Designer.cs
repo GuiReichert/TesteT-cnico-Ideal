@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesteTécnicoIdeal.API.Database;
 
@@ -10,9 +11,11 @@ using TesteTécnicoIdeal.API.Database;
 namespace TesteTécnicoIdeal.API.Migrations
 {
     [DbContext(typeof(TesteTécnicoIdeal_DbContext))]
-    partial class TesteTécnicoIdeal_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20250331160827_Fixing_PhoneNumber_DataType")]
+    partial class Fixing_PhoneNumber_DataType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
