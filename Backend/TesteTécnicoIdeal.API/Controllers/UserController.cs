@@ -36,7 +36,7 @@ namespace TesteTécnicoIdeal.API.Controllers
 
                     return BadRequest(exception.ErrorMessages);
                 }
-                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
+                return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
 
         }
@@ -58,7 +58,7 @@ namespace TesteTécnicoIdeal.API.Controllers
 
                     return BadRequest(exception.ErrorMessages);
                 }
-                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
+                return StatusCode(500, "Um erro inesperado aconteceu(API).");
 
             }
         }
@@ -79,7 +79,7 @@ namespace TesteTécnicoIdeal.API.Controllers
 
                     return BadRequest(exception.ErrorMessages);
                 }
-                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
+                return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
 
         }
@@ -100,7 +100,7 @@ namespace TesteTécnicoIdeal.API.Controllers
 
                     return BadRequest(exception.ErrorMessages);
                 }
-                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
+                return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
         }
 
@@ -120,7 +120,7 @@ namespace TesteTécnicoIdeal.API.Controllers
 
                     return BadRequest(exception.ErrorMessages);
                 }
-                else return StatusCode(500, "Um erro inesperado aconteceu(API).");
+                return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
         }
     }
