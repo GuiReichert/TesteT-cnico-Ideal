@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,22 +45,33 @@ namespace TesteTécnicoIdeal.WPF.Views
 
         private async void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            var newUser = new User_Model
+            if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtSobrenome.Text) || string.IsNullOrWhiteSpace(txtTelefone.Text))
             {
-                Id = _oldUser.Id,
-                Name = txtNome.Text,
-                Surname = txtSobrenome.Text,
-                PhoneNumber = txtTelefone.Text
-            };
-            try
-            {
-                await _apiService.UpdateUser(newUser);
-                MessageBox.Show("Atualização de cadastro realizada com sucesso.");
-                this.Close();
+                MessageBox.Show("Você deve preencher todos os campos.");
             }
-            catch (Exception ex)
+            else if (!Regex.IsMatch(txtTelefone.Text, @"^\+?[0-9\s\-\(\)]{8,15}$"))
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Número de telefone inválido.");
+            }
+            else
+            {
+                var newUser = new User_Model
+                {
+                    Id = _oldUser.Id,
+                    Name = txtNome.Text,
+                    Surname = txtSobrenome.Text,
+                    PhoneNumber = txtTelefone.Text
+                };
+                try
+                {
+                    await _apiService.UpdateUser(newUser);
+                    MessageBox.Show("Atualização de cadastro realizada com sucesso.");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

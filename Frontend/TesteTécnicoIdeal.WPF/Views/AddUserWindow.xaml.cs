@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,22 +34,33 @@ namespace TesteTécnicoIdeal.WPF.Views
 
         private async void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            var newUser = new UserDTO {
-                Name = txtNome.Text,
-                Surname = txtSobrenome.Text,
-                PhoneNumber = txtTelefone.Text,
+            if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtSobrenome.Text) || string.IsNullOrWhiteSpace(txtTelefone.Text))
+            {
+                MessageBox.Show("Você deve preencher todos os campos.");
+            }
+            else if (!Regex.IsMatch(txtTelefone.Text, @"^\+?[0-9\s\-\(\)]{8,15}$"))
+            {
+                MessageBox.Show("Número de telefone inválido.");
+            }
+            else
+            {
+                var newUser = new UserDTO
+                {
+                    Name = txtNome.Text,
+                    Surname = txtSobrenome.Text,
+                    PhoneNumber = txtTelefone.Text,
                 };
-            try
-            {
-                await _apiService.CreateUser(newUser);
-                MessageBox.Show("Cadastro realizado com sucesso.");
-                this.Close();
+                try
+                {
+                    await _apiService.CreateUser(newUser);
+                    MessageBox.Show("Cadastro realizado com sucesso.");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
         }
     }
 }

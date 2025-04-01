@@ -26,7 +26,15 @@ namespace TesteTécnicoIdeal.WPF
         {
             InitializeComponent();
             _apiService = apiService;
-            RefreshList();
+            try
+            {
+                RefreshList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao se conectar com a API.");
+            }
+
         }
 
         private async Task RefreshList()
