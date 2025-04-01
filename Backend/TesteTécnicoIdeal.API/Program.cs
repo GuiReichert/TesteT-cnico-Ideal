@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TesteTécnicoIdeal.API.Database;
+using TesteTécnicoIdeal.API.DTO_s;
 using TesteTécnicoIdeal.API.Repositories;
 using TesteTécnicoIdeal.API.Services;
 
@@ -15,7 +16,7 @@ builder.Services.AddDbContext<TesteTécnicoIdeal_DbContext>(options => options.Us
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 
 

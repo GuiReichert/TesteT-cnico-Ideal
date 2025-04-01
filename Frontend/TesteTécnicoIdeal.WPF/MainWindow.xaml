@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TesteTécnicoIdeal.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Teste Técnico IdealSoft" Height="400" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FF1B2D46">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid x:Name="gridCadastro" IsReadOnly="True" AutoGenerateColumns="False" SelectionUnit="FullRow" Grid.Column="1" Grid.Row="1" Margin="15,15,15,5" SelectionChanged="gridCadastro_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Nome" Width="3*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Sobrenome" Width="3*" Binding="{Binding Surname}"/>
+                <DataGridTextColumn Header="Telefone" Width="2*" Binding="{Binding PhoneNumber}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="318*"/>
+                <ColumnDefinition Width="253*"/>
+                <ColumnDefinition Width="96*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txtCadastro" Text="Lista de Cadastro" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" FontFamily="Arial" FontWeight="Bold" Foreground="White" Margin="15,0,0,0" Height="35" Width="252"/>
+            <Grid Grid.ColumnSpan="2" Margin="4,0,83,0" Grid.Column="1">
+                <TextBox x:Name="txtUserId" Text="Buscar por Id" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="20" Width="140" PreviewTextInput="txtUserId_PreviewTextInput" GotFocus="txtUserId_GotFocus" LostFocus="txtUserId_LostFocus"/>
+                <Button x:Name="btnBuscar" Content="Buscar" VerticalAlignment="Center" FontSize="20" Margin="160,0,20,0" Click="btnBuscar_Click"/>
+            </Grid>
+            <Button x:Name="btnAtualizar" Content="Atualizar" VerticalAlignment="Center" FontSize="20" Grid.Column="2" Height="30" Margin="5,0,5,0" Click="btnAtualizar_Click"/>
+
+        </Grid>
+        <Border Grid.RowSpan="3" Background="#FF12243A"/>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnAdicionar" Margin="40,5,40,5" Content="Adicionar" FontSize="20" FontFamily="Arial" Background="#FF12243A" BorderBrush="#FF0E1E35" BorderThickness="1" Foreground="White" Click="btnAdicionar_Click"/>
+            <Button x:Name="btnAlterar" Margin="40,5,40,5" Content="Alterar" FontSize="20" Grid.Column="1" FontFamily="Arial" Background="#FF12243A" BorderBrush="#FF0E1E35" BorderThickness="1" Foreground="White" Click="btnAlterar_Click"/>
+            <Button x:Name="btnDeletar" Margin="40,5,40,5" Content="Deletar" FontSize="20" Grid.Column="2" FontFamily="Arial" Background="#FF12243A" BorderBrush="#FF0E1E35" BorderThickness="1" Foreground="White" Click="btnDeletar_Click"/>
+        </Grid>
+
+
 
     </Grid>
 </Window>

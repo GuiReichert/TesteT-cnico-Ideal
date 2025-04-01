@@ -63,7 +63,5 @@ namespace TesteTécnicoIdeal.API.Repositories
             }
             _dbContext.Remove(user);
         }
-
-
     }
 }

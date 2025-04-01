@@ -8,6 +8,7 @@ namespace TesteTécnicoIdeal.API.DTO_s
         public AutoMapperProfile()
         {
             CreateMap<UserDTO, User>();
+            CreateMap<User, UserDTO>();
         }
     }
 }

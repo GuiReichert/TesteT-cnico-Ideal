@@ -84,7 +84,7 @@ namespace TesteTécnicoIdeal.API.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult> Put(UserDTO request, int id)
         {
             try
@@ -104,7 +104,7 @@ namespace TesteTécnicoIdeal.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             try

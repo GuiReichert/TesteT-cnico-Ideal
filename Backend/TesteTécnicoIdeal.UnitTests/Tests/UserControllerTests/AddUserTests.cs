@@ -61,6 +61,5 @@ namespace TesteTécnicoIdeal.UnitTests.Tests.UserControllerTests
             Assert.Equal(500, statusCodeResult.StatusCode);
             Assert.Equal(unexpectedErrorMessage, statusCodeResult.Value);
         }
-
     }
 }
