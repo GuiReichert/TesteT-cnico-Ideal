@@ -123,6 +123,5 @@ namespace TesteTécnicoIdeal.API.Controllers
                 else return StatusCode(500, "Um erro inesperado aconteceu(API).");
             }
         }
-
     }
 }
