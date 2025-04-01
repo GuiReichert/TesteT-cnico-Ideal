@@ -13,7 +13,7 @@ namespace TesteTécnicoIdeal.WPF
     public partial class App : Application
     {
         private readonly IServiceProvider _serviceProvider;
-        private const string API_URL = "https://localhost:7283/User/";                             // Conexão base provisória com a API
+        private const string API_URL = "https://testetécnicoidealapi20250401171514-dmedfsgpgzdrhqc5.brazilsouth-01.azurewebsites.net/";                             // Conexão base provisória com a API
 
         public App()
         {

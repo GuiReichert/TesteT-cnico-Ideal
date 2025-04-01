@@ -20,20 +20,13 @@ namespace TesteTécnicoIdeal.WPF
     {
         private readonly ApiService _apiService;
         List<User_Model> usersList = new List<User_Model>();
-        User_Model selectedUser;
+        User_Model? selectedUser;
 
         public MainWindow(ApiService apiService)
         {
             InitializeComponent();
             _apiService = apiService;
-            try
-            {
-                RefreshList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao se conectar com a API.");
-            }
+            RefreshList();
 
         }
 

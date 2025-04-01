@@ -31,7 +31,7 @@ namespace TesteTécnicoIdeal.WPF.Service
         {
             try
             {
-                var response = await _httpClient.GetAsync("");
+                var response = await _httpClient.GetAsync("user");
                 if (!response.IsSuccessStatusCode)
                 {
                     var errorMessage = await response.Content.ReadAsStringAsync();
@@ -51,7 +51,7 @@ namespace TesteTécnicoIdeal.WPF.Service
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{id}");
+                var response = await _httpClient.GetAsync($"user/{id}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -74,7 +74,7 @@ namespace TesteTécnicoIdeal.WPF.Service
 
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("", mappedUser);
+                var response = await _httpClient.PostAsJsonAsync("user", mappedUser);
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -93,7 +93,7 @@ namespace TesteTécnicoIdeal.WPF.Service
         {
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"{user.Id}", user);
+                var response = await _httpClient.PutAsJsonAsync($"user/{user.Id}", user);
                 if (!response.IsSuccessStatusCode)
                 {
                     var errorMessage = await response.Content.ReadAsStringAsync();
@@ -111,7 +111,7 @@ namespace TesteTécnicoIdeal.WPF.Service
         {
             try
             {
-                var response = await _httpClient.DeleteAsync($"{id}");
+                var response = await _httpClient.DeleteAsync($"user/{id}");
                 if (!response.IsSuccessStatusCode)
                 {
                     var errorMessage = await response.Content.ReadAsStringAsync();
